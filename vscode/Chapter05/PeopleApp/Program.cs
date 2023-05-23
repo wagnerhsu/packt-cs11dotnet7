@@ -1,6 +1,6 @@
 ﻿using Packt.Shared;
 
-Thread.CurrentThread.CurrentCulture = 
+Thread.CurrentThread.CurrentCulture =
   System.Globalization.CultureInfo.GetCultureInfo("en-GB");
 
 // Person bob = new Person(); // C# 1.0 or later
@@ -18,8 +18,8 @@ WriteLine(format: "{0} was born on {1:dddd, d MMMM yyyy}",
 
 Person alice = new()
 {
-  Name = "Alice Jones",
-  DateOfBirth = new(1998, 3, 7) // C# 9.0 or later
+    Name = "Alice Jones",
+    DateOfBirth = new(1998, 3, 7) // C# 9.0 or later
 };
 
 WriteLine(format: "{0} was born on {1:dd MMM yy}",
@@ -49,7 +49,7 @@ WriteLine($"{bob.Name} has {bob.Children.Count} children:");
 
 for (int childIndex = 0; childIndex < bob.Children.Count; childIndex++)
 {
-  WriteLine($"> {bob.Children[childIndex].Name}");
+    WriteLine($"> {bob.Children[childIndex].Name}");
 }
 
 /*
@@ -148,8 +148,8 @@ WriteLine($"After: d = {d}, e = {e}, f = {f}");
 
 Person sam = new()
 {
-  Name = "Sam",
-  DateOfBirth = new(1969, 6, 25)
+    Name = "Sam",
+    DateOfBirth = new(1969, 6, 25)
 };
 
 WriteLine(sam.Origin);
@@ -163,13 +163,13 @@ string color = "Black";
 
 try
 {
-  sam.FavoritePrimaryColor = color;
-  WriteLine($"Sam's favorite primary color is {sam.FavoritePrimaryColor}.");
+    sam.FavoritePrimaryColor = color;
+    WriteLine($"Sam's favorite primary color is {sam.FavoritePrimaryColor}.");
 }
 catch (Exception ex)
 {
-  WriteLine("Tried to set {0} to '{1}': {2}",
-    nameof(sam.FavoritePrimaryColor), color, ex.Message);
+    WriteLine("Tried to set {0} to '{1}': {2}",
+      nameof(sam.FavoritePrimaryColor), color, ex.Message);
 }
 
 /*
@@ -182,8 +182,8 @@ Book book = new()
 Book book = new(isbn: "978-1803237800",
   title: "C# 11 and .NET 7 - Modern Cross-Platform Development Fundamentals")
 {
-  Author = "Mark J. Price",
-  PageCount = 821
+    Author = "Mark J. Price",
+    PageCount = 821
 };
 
 WriteLine("{0}: {1} written by {2} has {3:N0} pages.",
@@ -214,11 +214,11 @@ lamech.Marry(adah);
 
 if (zillah + lamech)
 {
-  WriteLine($"{zillah.Name} and {lamech.Name} successfully got married.");
+    WriteLine($"{zillah.Name} and {lamech.Name} successfully got married.");
 }
 else
 {
-  WriteLine($"{zillah.Name} and {lamech.Name} failed to marry.");
+    WriteLine($"{zillah.Name} and {lamech.Name} failed to marry.");
 }
 
 lamech.OutputSpouses();
@@ -247,8 +247,8 @@ WriteLine($"{zillah.Name} has {zillah.Children.Count} children.");
 
 for (int i = 0; i < lamech.Children.Count; i++)
 {
-  WriteLine(format: "{0}'s child #{1} is named \"{2}\".",
-    arg0: lamech.Name, arg1: i, arg2: lamech[i].Name);
+    WriteLine(format: "{0}'s child #{1} is named \"{2}\".",
+      arg0: lamech.Name, arg1: i, arg2: lamech[i].Name);
 }
 
 // Implementing functionality using local functions
@@ -257,11 +257,11 @@ int number = 6; // change to -1 to make the exception handling code execute
 
 try
 {
-  WriteLine($"{number}! is {Person.Factorial(number)}");
+    WriteLine($"{number}! is {Person.Factorial(number)}");
 }
 catch (Exception ex)
 {
-  WriteLine($"{ex.GetType()} says: {ex.Message} number was {number}.");
+    WriteLine($"{ex.GetType()} says: {ex.Message} number was {number}.");
 }
 
 // Pattern matching with objects
@@ -276,32 +276,32 @@ Passenger[] passengers = {
 
 foreach (Passenger passenger in passengers)
 {
-  decimal flightCost = passenger switch
-  {
-    /* C# 8 syntax
-    FirstClassPassenger p when p.AirMiles > 35000 => 1500M,
-    FirstClassPassenger p when p.AirMiles > 15000 => 1750M,
-    FirstClassPassenger                           => 2000M, */
-
-    // C# 9 or later syntax
-    FirstClassPassenger p => p.AirMiles switch
+    decimal flightCost = passenger switch
     {
-      > 35000 => 1500M,
-      > 15000 => 1750M,
-      _       => 2000M
-    },
-    BusinessClassPassenger _                      => 1000M,
-    CoachClassPassenger p when p.CarryOnKG < 10.0 => 500M,
-    CoachClassPassenger _                         => 650M,
-    _                                             => 800M
-  };
-  WriteLine($"Flight costs {flightCost:C} for {passenger}");
+        /* C# 8 syntax
+        FirstClassPassenger p when p.AirMiles > 35000 => 1500M,
+        FirstClassPassenger p when p.AirMiles > 15000 => 1750M,
+        FirstClassPassenger                           => 2000M, */
+
+        // C# 9 or later syntax
+        FirstClassPassenger p => p.AirMiles switch
+        {
+            > 35000 => 1500M,
+            > 15000 => 1750M,
+            _ => 2000M
+        },
+        BusinessClassPassenger _ => 1000M,
+        CoachClassPassenger p when p.CarryOnKG < 10.0 => 500M,
+        CoachClassPassenger _ => 650M,
+        _ => 800M
+    };
+    WriteLine($"Flight costs {flightCost:C} for {passenger}");
 }
 
 ImmutablePerson jeff = new()
 {
-  FirstName = "Jeff",
-  LastName = "Winger"
+    FirstName = "Jeff",
+    LastName = "Winger"
 };
 // We cannot set the properties after initialization because they
 // are init-only.
@@ -309,13 +309,14 @@ ImmutablePerson jeff = new()
 
 ImmutableVehicle car = new()
 {
-  Brand = "Mazda MX-5 RF",
-  Color = "Soul Red Crystal Metallic",
-  Wheels = 4
+    Brand = "Mazda MX-5 RF",
+    Color = "Soul Red Crystal Metallic",
+    Wheels = 4
 };
 
 ImmutableVehicle repaintedCar = car
-  with { Color = "Polymetal Grey Metallic" };
+  with
+{ Color = "Polymetal Grey Metallic" };
 
 WriteLine($"Original car color was {car.Color}.");
 WriteLine($"New car color is {repaintedCar.Color}.");
