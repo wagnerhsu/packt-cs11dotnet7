@@ -1,8 +1,10 @@
-**Improvements** (34 items)
+**Improvements** (42 items)
 
 If you have suggestions for improvements, then please [raise an issue in this repository](https://github.com/markjprice/cs11dotnet7/issues) or email me at markjprice (at) gmail.com.
 
+- [Page 8 - Installing other extensions](#page-8---installing-other-extensions)
 - [Page 25 - Adding a second project using Visual Studio 2022](#page-25---adding-a-second-project-using-visual-studio-2022)
+- [Page 31 - Adding a second project using Visual Studio Code](#page-31---adding-a-second-project-using-visual-studio-code)
 - [Page 56 - Examples of statements and blocks](#page-56---examples-of-statements-and-blocks)
 - [Page 69 - Raw interpolated string literals](#page-69---raw-interpolated-string-literals)
 - [Page 86 - Getting text input from the user](#page-86---getting-text-input-from-the-user)
@@ -17,6 +19,7 @@ If you have suggestions for improvements, then please [raise an issue in this re
 - [Page 200 - Talking about OOP](#page-200---talking-about-oop)
 - [Page 235 - More about methods](#page-235---more-about-methods)
 - [Page 237 - Implementing functionality using methods](#page-237---implementing-functionality-using-methods)
+- [Page 238 - Implementing functionality using methods](#page-238---implementing-functionality-using-methods)
 - [Page 241 - Defining flight passengers](#page-241---defining-flight-passengers)
 - [Page 251 - Setting up a class library and console application](#page-251---setting-up-a-class-library-and-console-application)
 - [Page 254 - Calling methods using delegates](#page-254---calling-methods-using-delegates)
@@ -30,13 +33,32 @@ If you have suggestions for improvements, then please [raise an issue in this re
 - [Page 453 - Scaffolding models using an existing database](#page-453---scaffolding-models-using-an-existing-database)
 - [Page 512 - Group-joining sequences](#page-512---group-joining-sequences)
 - [Page 533 - Building websites using ASP.NET Core](#page-533---building-websites-using-aspnet-core)
+- [Page 541 - Creating a class library for entity models using SQLite](#page-541---creating-a-class-library-for-entity-models-using-sqlite)
 - [Page 547 - Creating a class library for a Northwind database context](#page-547---creating-a-class-library-for-a-northwind-database-context)
+- [Page 550 - Creating a class library for entity models using SQL Server](#page-550---creating-a-class-library-for-entity-models-using-sql-server)
 - [Page 551 - Creating a class library for entity models using SQL Server](#page-551---creating-a-class-library-for-entity-models-using-sql-server)
 - [Page 573 - Adding code to a Razor Page](#page-573---adding-code-to-a-razor-page)
 - [Page 586 - Creating a Razor class library, Page 587 - Implementing a partial view to show a single employee](#page-586---creating-a-razor-class-library-page-587---implementing-a-partial-view-to-show-a-single-employee)
 - [Page 601 - Setting up an ASP.NET Core MVC website](#page-601---setting-up-an-aspnet-core-mvc-website)
+- [Page 650 - Varying cached data by query string](#page-650---varying-cached-data-by-query-string)
 - [Page 654 - Making controller action methods asynchronous](#page-654---making-controller-action-methods-asynchronous)
 - [Page 655 - Exercise 14.2 – Practice implementing MVC by implementing a category detail page](#page-655---exercise-142--practice-implementing-mvc-by-implementing-a-category-detail-page)
+- [Page 673 - Configuring the customer repository and Web API controller](#page-673---configuring-the-customer-repository-and-web-api-controller)
+- [Page 700 - Exercise 15.2 – Practice creating and deleting customers with HttpClient](#page-700---exercise-152--practice-creating-and-deleting-customers-with-httpclient)
+
+# Page 8 - Installing other extensions
+
+In the next edition, I will tell the reader to install the **C# Dev Kit**. This has the **C#** extension as a dependency so that will be installed as well but it uses a newer version that is currently a pre-release. 
+
+**C#** extension version `2.0` or later has removed OmniSharp and it has been replaced by a Language Server Protocol (LSP) Tools Host which integrates with open source components like Roslyn and Razor to provide rich type information and a faster, more reliable C# experience. 
+
+The **C# Dev Kit** also adds a **Solution Explorer** to Visual Studio Code's **EXPLORER** view when you open a folder or project that contains a solution file (`.sln`).
+
+In the next edition, I will therefore no longer need separate folder structures for Visual Studio 2022 and its `.sln` files, and Visual Studio Code and its `.code-workspace` files. I will just create a single unified folder structure. This does mean however that readers will need to be careful about switching between code editors. They will need to clean a solution (or manually delete the `bin` and `obj` folders) when they switch.
+
+In the next edition, I will change the Visual Studio Code instructions to open a chapter folder, like `Chapter01`, and then use the **Solution Explorer** to work with the projects.
+
+> Note: It will no longer necessary to use the **OmniSharp: Select Project** option. All projects in a recognized solution will have features like IntelliSense and debugging available.
 
 # Page 25 - Adding a second project using Visual Studio 2022
 
@@ -47,6 +69,47 @@ Current selection, and then click OK." Then in Step 7, I wrote, "In Solution Exp
 making the project name bold."
 
 In the next edition, I will add a note to explicitly explain that I recommend this way of setting the startup project because it then makes it very easy to switch startup projects by simply clicking a project (or any file in a project) to make it the startup project. Although you can right-click a project and set it as a startup project, if you then want to run a different project, you must manually change it again. Simply clicking anywhere in the project is easier. 
+
+# Page 31 - Adding a second project using Visual Studio Code
+
+In Step 7, I wrote, "Enter `omni`, and then, in the drop-down list that appears, select **OmniSharp: Select Project**." 
+
+This works if you installed the most recent release version `1.25.9`. But if you installed the pre-release version `2.0.x` then it does not include OmniSharp any more.
+
+In the next edition, I will tell readers to install the **C# Dev Kit** which has some improvements that mean we can use the same solution files as Visual Studio 2022 and other tasks are simplified. So throughout the book I will rewrite the step-by-step instructions for Visual Studio Code users.
+
+For example, it is no longer necessary to use the **OmniSharp: Select Project** option. All projects in a recognized solution will have features like IntelliSense and debugging available. To recognize a solution, we need to create a solution file. As an example, in Chapter 1, after the reader has created the two projects, I will rewrite the instructions to create a solution for them as follows:
+
+1. At the command prompt or terminal, open the `Chapter01` folder.
+2. Create a new solution file, as shown in the following command:
+```
+dotnet new sln
+```
+For example:
+```
+C:\cs12dotnet8\Chapter01>dotnet new sln
+The template "Solution File" was created successfully.
+```
+
+3. Add the two subfolders and their projects to the solution file, as shown in the following command:
+```
+dotnet sln add HelloWorld AboutMyEnvironment
+```
+For example:
+```
+C:\cs12dotnet8\Chapter01>dotnet sln add HelloCS AboutMyEnvironment
+Project `HelloCS\HelloCS.csproj` added to the solution.
+Project `AboutMyEnvironment\AboutMyEnvironment.csproj` added to the solution.
+```
+
+4. In Visual Studio Code, open the `Chapter01` folder.
+5. In **EXPLORER**, wait for the solution file to be recognized, as shown in the following figure:
+
+![C# Dev Kit recognizing a solution file](images/csharp-dev-kit-01.png)
+
+6. Click **Solution Explorer** to expand it, as shown in the following figure:
+
+![Solution Explorer in Visual Studio Code](images/csharp-dev-kit-02.png)
 
 # Page 56 - Examples of statements and blocks
 
@@ -440,6 +503,51 @@ Console.WriteLine(result);
 
 In the 8th edition, I will add a similar explanation of the operator `??` to the **Chapter 3, Operating on variables** section.
 
+# Page 238 - Implementing functionality using methods
+
+In Step 4, you write a `for` statement that enumerates the children of a `Person` object named `lamech`, as shown in the following code:
+```cs
+for (int i = 0; i < lamech.Children.Count; i++)
+{
+  WriteLine(format: "{0}'s child #{1} is named \"{2}\".",
+    arg0: lamech.Name, arg1: i, arg2: lamech[i].Name);
+}
+```
+
+Previously on page 233 you define an indexer for the `Person` class that accepts an integer parameter, as shown in the following code:
+```cs
+// indexers
+public Person this[int index]
+{
+  get
+  {
+    return Children[index]; // pass on to the List<T> indexer
+  }
+  set
+  {
+    Children[index] = value;
+  }
+}
+```
+
+If you do not define the indexer, then you cannot use it in the `for` statement, and you will see the following compile error:
+```
+Error	CS0021	Cannot apply indexing with [] to an expression of type 'Person'
+```
+
+In the next edition, I will add a comment in the `for` statement to warn the reader that use of the indexer requires that the indexer be defined, and to offer an alternative if it has not been defined, as shown in the following code:
+```cs
+for (int i = 0; i < lamech.Children.Count; i++)
+{
+  WriteLine(format: "{0}'s child #{1} is named \"{2}\".",
+    arg0: lamech.Name, arg1: i, 
+    // The following requires an indexer to be defined for Person.
+    // You should have done that in the previous section.
+    // Alternatively, use lamech.Children[i].Name instead.
+    arg2: lamech[i].Name);
+}
+```
+
 # Page 241 - Defining flight passengers
 
 > Thanks to [Masoud Nazari](https://github.com/MAS-OUD) for raising this [issue on 8 March 2023](https://github.com/markjprice/cs11dotnet7/issues/38).
@@ -614,7 +722,9 @@ Throughout the rest of the book, I will replace the `Filename` parameter with `D
 
 # Page 453 - Scaffolding models using an existing database
 
-In Step 2, I show text that must be entered as a single line at the command-line, as shown in the following command formatted as in the print book:
+There are two potential issues on this page.
+
+First, in Step 2, I show text that must be entered as a single line at the command prompt or terminal, as shown in the following command formatted as in the print book:
 ```
 dotnet ef dbcontext scaffold "Filename=Northwind.db" Microsoft.
 EntityFrameworkCore.Sqlite --table Categories --table Products --output-
@@ -628,6 +738,15 @@ For convenience, here is the same command as a single line to make it easier to 
 ```
 dotnet ef dbcontext scaffold "Filename=Northwind.db" Microsoft.EntityFrameworkCore.Sqlite --table Categories --table Products --output-dir AutoGenModels --namespace WorkingWithEFCore.AutoGen --data-annotations --context Northwind
 ```
+
+Second, I tell the reader to enter the preceding command in the `WorkingWithEFCore` folder. If you have created the project file named `WorkingWithEFCore.csproj` in that folder as directed then every works. But if that folder does not contain your project file then you will see the following error:
+```
+No project was found. Change the current working directory or use the --project option.
+```
+
+To fix this issue, change to the folder that contains your `WorkingWithEFCore.csproj` project file and then run the command. Alternatively, you can specific the path to the `WorkingWithEFCore.csproj` project file using the `--project` switch.
+
+In the 8th edition, I will add a note about this.
 
 # Page 512 - Group-joining sequences
 
@@ -710,6 +829,15 @@ A **Razor Layout** file like `_MyCustomLayout.cshtml` is identical to a **Razor 
 > **Convention**: The naming convention for special and shared Razor files like layouts and partial views is to prefix with an underscore `_`. For example, `_ViewStart.cshtml`, `_Layout.cshtml`, or `_Product.cshtml` (a partial view for rendering a product).
 
 ![Visual Studio 2022 Razor project item types](images/razor-file-types.png)
+
+# Page 541 - Creating a class library for entity models using SQLite
+
+In Step 9, you enter a `dotnet-ef` command. You must be in the project folder containing the `.csproj` file or you will see the following error:
+```
+No project was found. Change the current working directory or use the --project option.
+```
+
+In the 8th edition, I will add a note about this.
 
 # Page 547 - Creating a class library for a Northwind database context
 
@@ -813,6 +941,15 @@ public static IServiceCollection AddNorthwindContext(
 }
 ```
 
+# Page 550 - Creating a class library for entity models using SQL Server
+
+In Step 6, you enter a `dotnet-ef` command. You must be in the project folder containing the `.csproj` file or you will see the following error:
+```
+No project was found. Change the current working directory or use the --project option.
+```
+
+In the 8th edition, I will add a note about this.
+
 # Page 551 - Creating a class library for entity models using SQL Server
 
 In Step 14, I tell the reader, "In the `Northwind.Common.DataContext.SqlServer` project, in `NorthwindContext.cs`, remove 
@@ -906,6 +1043,19 @@ In the next edition, I will improve this text and add a warning:
 
 "**Views**: *Razor View* files, that is, `.cshtml` files, that render data in view models into HTML web pages. *Razor Views* are different from *Razor Pages* but they share the same file extension `.cshtml`. When creating a *Razor Page*, it must have the `@page` directive at the top of its file. When creating a *Razor View*, do NOT use the `@page` directive! If you do, the controller will not pass the model and it will be `null`, throwing a `NullReferenceException` when you try to access any of its members. Also note that Blazor uses the `.razor` file extension, but do not confuse them with *Razor View* or *Razor Page* files! To add even more confusion, Blazor can also use the `@page` directive to allow a Blazor component to act like a page!"
 
+# Page 650 - Varying cached data by query string
+
+At the end of this section, you will have enabled output caching for the default MVC route that ignores query string variants. This could be confusing if you forget this behavior.
+
+In the next edition, at the end of this section I will add a step to disable the output caching, as shown in the following code:
+```cs
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+// Comment out the following:
+//  .CacheOutput("views");
+```
+
 # Page 654 - Making controller action methods asynchronous
 
 In an earlier task, you imported the `Microsoft.EntityFrameworkCore` namespace so that you could use the `Include` extension method. In Step 1, I tell you to use the `ToListAsync` method to implement the `Index` action method asynchronously. If you had not previously imported the `Microsoft.EntityFrameworkCore` namespace then you would have to import it now to use the `ToListAsync` method. 
@@ -983,3 +1133,286 @@ If you want to keep the original link format, then you would need to decorate th
 [Route("category/{id}")]
 public async Task<IActionResult> CategoryDetail(int? id)
 ```
+
+# Page 673 - Configuring the customer repository and Web API controller
+
+In Step 4, you add a `CustomersController.cs` file and define a `CustomersController` class, as shown in the following partial code:
+```cs
+// base address: api/customers
+[Route("api/[controller]")]
+[ApiController]
+public class CustomersController : ControllerBase
+{
+```
+
+In the next edition, I will add more explanation about how the route is defined by the `[Route]` attribute. The `[controller]` part is automatically replaced with the class name with the `Controller` suffix removed. Therefore the base address of the route to the `CustomersController` is `api/customers`.
+
+# Page 700 - Exercise 15.2 – Practice creating and deleting customers with HttpClient
+
+In this exercise, you are tasked to "extend the `Northwind.Mvc` website project to have pages where a visitor can fill in a form to create a new customer, or search for a customer and then delete them. The MVC controller should make calls to the Northwind web service to create and delete customers." 
+
+Without additional help and with no solution provided by me, it can be tricky for a new reader to complete this exercise.
+
+I have now provided a possible solution and updated the GitHub repository with it. In the next edition, I will also provide some hints, similar to the following.
+
+The project already has a page to show customers, either all of them or only those in a specified country. To avoid work, we will use this existing functionality. We just need to add a button in the `Customers.cshtml` view to **Add Customer**, a **Delete** button in a new column for each customer in the table, and areas to output success and errors messages, as shown in the following code:
+
+**At the top of the Customers.cshtml Razor view**
+```html
+@if (TempData["error-message"] is not null)
+{
+  <p class="alert alert-danger">Error! @TempData["error-message"]</p>
+}
+@if (TempData["success-message"] is not null)
+{
+  <p class="alert alert-success">Congratulations! @TempData["success-message"]</p>
+}
+
+<a asp-controller="Home" asp-action="AddCustomer" 
+   class="btn btn-outline-primary">Add Customer</a>
+```
+
+**In the table of customers, a blank header and a new column for delete buttons**
+```html
+<th></th>
+```
+
+```html
+<td>
+  <a asp-controller="Home"
+     asp-action="DeleteCustomer" 
+     asp-route-customerid="@c.CustomerId" 
+     class="btn btn-outline-danger">Delete</a>
+</td>
+```
+
+A common design pattern for implementing add and delete functionality in an ASP.NET Core MVC website is to define pairs of action methods, one that responds to a `GET` request and one that responds to a `POST` request.
+
+For add functionality:
+- `GET /Home/AddCustomer`: This request means show me a page with a blank form to enter information about a new customer.
+- `POST /Home/AddCustomer`: This request means perform the actual customer insert using the form data provided in the body which is an entire customer.
+
+For delete functionality:
+- `GET /Home/DeleteCustomer/{ID}`: This request means show me a page with a form loaded with an existing customer record to confirm this is the customer the will be deleted.
+- `POST /Home/DeleteCustomer`: This request means perform the actual customer delete using the form data provided in the body which only needs to be the unique `customerId`.
+
+Here is some example code that would implement this functionality:
+```cs
+// GET /Home/AddCustomer
+public IActionResult AddCustomer()
+{
+  ViewData["Title"] = "Add Customer";
+  return View();
+}
+
+// POST /Home/AddCustomer
+// A Customer object in the request body.
+[HttpPost]
+public async Task<IActionResult> AddCustomer(Customer customer)
+{
+  HttpClient client = clientFactory.CreateClient(
+    name: "Northwind.WebApi");
+
+  HttpResponseMessage response = await client.PostAsJsonAsync(
+    requestUri: "api/customers", value: customer);
+
+  // Optionally, get the created customer back as JSON
+  // so the user can see the assigned ID, for example.
+  Customer? model = await response.Content
+    .ReadFromJsonAsync<Customer>();
+
+  if (response.IsSuccessStatusCode)
+  {
+    TempData["success-message"] = "Customer successfully added.";
+  }
+  else
+  {
+    TempData["error-message"] = "Customer was NOT added.";
+  }
+
+  // Show the full customers list to see if it was added.
+  return RedirectToAction("Customers");
+}
+
+// GET /Home/DeleteCustomer/{customerId}
+public async Task<IActionResult> DeleteCustomer(string customerId)
+{
+  HttpClient client = clientFactory.CreateClient(
+    name: "Northwind.WebApi");
+
+  Customer? customer = await client.GetFromJsonAsync<Customer>(
+    requestUri: $"api/customers/{customerId}");
+
+  ViewData["Title"] = "Delete Customer";
+
+  return View(customer);
+}
+
+// POST /Home/DeleteCustomer
+// A CustomerId in the request body e.g. ALFKI.
+[HttpPost]
+[Route("home/deletecustomer")]
+// Action method name must have a different name from the GET method
+// due to C# not allowing duplicate method signatures.
+public async Task<IActionResult> DeleteCustomerPost(string customerId)
+{
+  HttpClient client = clientFactory.CreateClient(
+    name: "Northwind.WebApi");
+
+  HttpResponseMessage response = await client.DeleteAsync(
+    requestUri: $"api/customers/{customerId}");
+
+  if (response.IsSuccessStatusCode)
+  {
+    TempData["success-message"] = "Customer successfully deleted.";
+  }
+  else
+  {
+    TempData["error-message"] = $"Customer {customerId} was NOT deleted.";
+  }
+
+  // Show the full customers list to see if it was deleted.
+  return RedirectToAction("Customers");
+}
+```
+
+**AddCustomer.cshtml Razor view**
+```html
+@using Packt.Shared
+@model Customer
+
+<h2>@ViewData["Title"]</h2>
+
+<!--
+  Show an editable form with a blank customer. Postback to the action
+  method AddCustomer to perform the actual insert.
+-->
+<form asp-action="AddCustomer" method="post">
+  <div class="mb-3">
+    <label class="form-label" asp-for="CustomerId">Customer ID</label>
+    <input class="form-control" asp-for="CustomerId" />
+    <div class="form-text">
+      Customer ID must be five (5) upper case characters.
+    </div>
+    <span asp-validation-for="CustomerId" class="text-danger" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" asp-for="CompanyName">Company Name</label>
+    <input class="form-control" asp-for="CompanyName" />
+    <span asp-validation-for="CompanyName" class="text-danger" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" asp-for="ContactName">Contact Name</label>
+    <input class="form-control" asp-for="ContactName" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" asp-for="Address">Address</label>
+    <input class="form-control" asp-for="Address" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" asp-for="City">City</label>
+    <input class="form-control" asp-for="City" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" asp-for="Region">Region</label>
+    <input class="form-control" asp-for="Region" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" asp-for="Country">Country</label>
+    <input class="form-control" asp-for="Country" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" asp-for="PostalCode">Postal Code</label>
+    <input class="form-control" asp-for="PostalCode" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" asp-for="Phone">Phone</label>
+    <input class="form-control" asp-for="Phone" />
+  </div>
+  <div class="mb-3">
+    <input type="submit" value="Add Customer"
+           class="btn btn-outline-primary" />
+    <a asp-controller="Home" asp-action="Customers" 
+       class="btn btn-outline-secondary">
+      Cancel and return to Customers
+    </a>
+    <div asp-validation-summary="All" class="text-danger" />
+  </div>
+</form>
+
+@section Scripts {
+  @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+  }
+}
+```
+
+**DeleteCustomer.cshtml Razor view**
+```html
+@using Packt.Shared
+@model Customer
+<h2>@ViewData["Title"]</h2>
+
+<!--
+  Show a readonly form of an existing customer. Postback to the action 
+  method DeleteCustomer to perform the actual delete.
+-->
+<form asp-action="DeleteCustomer" method="post">
+  <div class="mb-3">
+    <label class="form-label" for="customerId">Customer ID</label>
+    <input class="form-control" id="customerId" value="@Model.CustomerId" readonly />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="companyName">Company Name</label>
+    <input class="form-control" id="companyName" value="@Model.CompanyName" readonly />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="contactName">Contact Name</label>
+    <input class="form-control" id="contactName" value="@Model.ContactName" readonly />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="address">Address</label>
+    <input class="form-control" id="address" value="@Model.Address" readonly />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="city">City</label>
+    <input class="form-control" id="city" value="@Model.City" readonly />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="region">Region</label>
+    <input class="form-control" id="region" value="@Model.Region" readonly />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="country">Country</label>
+    <input class="form-control" id="country" value="@Model.Country" readonly />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="postalCode">Postal Code</label>
+    <input class="form-control" id="postalCode" value="@Model.PostalCode" readonly />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="phone">Phone</label>
+    <input class="form-control" id="phone" value="@Model.Phone" readonly />
+  </div>
+  <div class="mb-3">
+    @Html.HiddenFor(c => c.CustomerId)
+    <input type="submit" value="Delete Customer"
+           class="btn btn-outline-danger" />
+    <a href="customers" class="btn btn-outline-secondary">
+      Cancel and return to Customers
+    </a>
+  </div>
+</form>
+```
+
+![Table of customers with add and delete buttons](images/Page700a.png)
+
+![Adding a customer, top of form](images/Page700b.png)
+
+![Adding a customer, bottom of form](images/Page700c.png)
+
+![Customer is added to the table](images/Page700d.png)
+
+![Deleting a customer, top of form](images/Page700e.png)
+
+![Deleting a customer, bottom of form](images/Page700f.png)

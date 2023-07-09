@@ -1,11 +1,14 @@
-**Errata** (44 items)
+**Errata** (47 items)
 
 If you find any mistakes, then please [raise an issue in this repository](https://github.com/markjprice/cs11dotnet7/issues) or email me at markjprice (at) gmail.com.
 
 > Microsoft has changed their domain for documentation from `https://docs.microsoft.com` to `https://learn.microsoft.com` with an automatic redirect so all links in my books that use the `docs` domain should still work.
 
 - [Page 4, 8 - Pros and cons of the .NET Interactive Notebooks extension, Downloading and installing Visual Studio Code](#page-4-8---pros-and-cons-of-the-net-interactive-notebooks-extension-downloading-and-installing-visual-studio-code)
+- [Page 8 - Installing other extensions](#page-8---installing-other-extensions)
 - [Page 11 - Understanding the journey to one .NET and Understanding .NET support](#page-11---understanding-the-journey-to-one-net-and-understanding-net-support)
+- [Page 28 - Writing code using Visual Studio Code](#page-28---writing-code-using-visual-studio-code)
+- [Page 31 - Adding a second project using Visual Studio Code](#page-31---adding-a-second-project-using-visual-studio-code)
 - [Page 36 - Getting help for the dotnet tool](#page-36---getting-help-for-the-dotnet-tool)
 - [Page 37 - Getting definitions of types and their members](#page-37---getting-definitions-of-types-and-their-members)
 - [Page 75 - Comparing double and decimal types](#page-75---comparing-double-and-decimal-types)
@@ -62,6 +65,16 @@ The **.NET Interactive Notebooks** extension has been renamed to **Polyglot Note
 
 I wrote that "They cannot read input from the user, for example, you cannot use ReadLine or ReadKey." Although you cannot use the `Console` class methods, you can use the `Microsoft.DotNet.Interactive.Kernel` class and its `GetInputAsync` method. This uses the Visual Studio Code user interface to prompt the user for input.
 
+# Page 8 - Installing other extensions
+
+In the table, the **C# for Visual Studio Code** extension says it is "powered by OmniSharp". This is true up to the most recent release version `1.25.9`. But if you install the pre-release version `2.0.x` then it does not include OmniSharp any more.
+
+To follow the instructions in the book, if you have installed the pre-release version `2.0.x` then on the **C#** extension page, I recommend that you click the button **Switch to Release Version** to revert back to the current release version `1.25.9`.
+
+If you have installed the **C# Dev Kit** then it will install the pre-release version of the **C#** extension. If you want to use them, then I have written [instructions in the improvements page](https://github.com/markjprice/cs11dotnet7/blob/main/docs/errata/improvements.md#page-31---adding-a-second-project-using-visual-studio-code) and I will use these in the next edition.
+
+> **More Information**: You can read the announcement about **C# Dev Kit** at the following link: https://devblogs.microsoft.com/visualstudio/announcing-csharp-dev-kit-for-visual-studio-code/
+
 # Page 11 - Understanding the journey to one .NET and Understanding .NET support
 
 Even-numbered .NET releases like .NET 6 and .NET 8 have a support level named **Long Term Support (LTS)** with a duration of 3 years. Odd-numbered .NET releases like .NET 5 and .NET 7 had a support level named **Current** with a duration of 18 months. 
@@ -73,6 +86,20 @@ On October 11, 2022, the .NET team changed the name again, to [**Standard Suppor
 On October 28, 2022, the .NET team changed the name *again*, to [**Standard Term Support (STS)**](https://twitter.com/mairacw/status/1585789100879069185), probably because an initialism of **SS** is problematic and internal code and configuration was already using `sts`. Sadly, it was too late to update the PDFs that are sent to print.
 
 *Sigh.* Such are the perils of trying to be up-to-date on release day.
+
+# Page 28 - Writing code using Visual Studio Code
+
+In Step 18, I wrote, "Visual Studio Code may have to download and install C# dependencies like OmniSharp, .NET Core Debugger, and Razor Language Server". This is true up to the most recent release version `1.25.9`. But if you install the pre-release version `2.0.x` then it does not include OmniSharp any more.
+
+To follow the instructions in the book, if you have installed the pre-release version `2.0.x` then on the **C#** extension page, I recommend that you click the button **Switch to Release Version** to revert back to the current release version `1.25.9`.
+
+# Page 31 - Adding a second project using Visual Studio Code
+
+In Step 7, I wrote, "Enter `omni`, and then, in the drop-down list that appears, select **OmniSharp: Select Project**." 
+
+This works if you installed the most recent release version `1.25.9`. But if you installed the pre-release version `2.0.x` then it does not include OmniSharp any more.
+
+To follow the instructions in the book, if you have installed the pre-release version `2.0.x` then on the **C#** extension page, I recommend that you click the button **Switch to Release Version** to revert back to the current release version `1.25.9`.
 
 # Page 36 - Getting help for the dotnet tool
 
@@ -246,9 +273,9 @@ But the immediately following section is *Navigating with the debugging toolbar*
 
 # Page 178 - Reviewing project packages
 
-> Thanks to [Nick Bettes](https://github.com/bettesn) and [Zhang Cheng](https://github.com/Matrix-Zhang) for raising this issue on [16 February 2023](https://github.com/markjprice/cs11dotnet7/issues/29), and a special thanks to [Huynh Loc Le](https://github.com/huynhloc-1110), who identified that the issue was caused by a Microsoft bug.
+> Thanks to [Nick Bettes](https://github.com/bettesn) and [Zhang Cheng](https://github.com/Matrix-Zhang) for raising this issue on [16 February 2023](https://github.com/markjprice/cs11dotnet7/issues/29), a special thanks to [Huynh Loc Le](https://github.com/huynhloc-1110), who identified that the issue was caused by a Microsoft fix to one of their bugs, and finally thanks to [richshi](https://github.com/richshi) who raised this issue again on [28 June 2023](https://github.com/markjprice/cs11dotnet7/issues/76) and consequently made me dig deeper to find a more complete explanation and solution.
 
-In Step 1, you add package references to enable an `appsettings.json` file to configure a trace switch. If you reference `Microsoft.Extensions.Configuration.Binder` package version `7.0.3`, it has a bug that causes an exception to be thrown, as shown in the following output:
+In Step 1, you add package references to enable an `appsettings.json` file to configure a trace switch. If you reference `Microsoft.Extensions.Configuration.Binder` package versions `7.0.3` or later, then they have fixed a bug, but the fix causes a regression in expected behavior which means that unless we change how we set the trace switch level an exception will be thrown, as shown in the following output:
 ```
 Reading from appsettings.json in C:\cs11dotnet7\Chapter04\Instrumenting\bin\Debug\net7.0
 Unhandled exception. System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
@@ -259,17 +286,23 @@ Unhandled exception. System.Reflection.TargetInvocationException: Exception has 
    at System.Diagnostics.TraceSwitch.OnValueChanged()
 ```
 
-Until Microsoft fixes the bug, use version `7.0.2`, the latest version that works correctly, as shown in the following markup:
-```xml
-<ItemGroup>
-  <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.2" />
-  <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+Originally, it seemed the best solution was to avoid the later versions that cause the changed behavior, so I advised to use 7.0.2 or earlier. But the change in 7.0.3 was to fix a bug, so we really need a solution that will allow us to use the latest package version and also works for older versions too.
 
-  <!--The following packages are included anyway due to dependencies-->
-  <!--<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="7.0.0" />-->
-  <!--<PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />-->
-</ItemGroup>
+To fix the issue, we can set both the `Level` property and the `Value` property of the trace switch, as shown in the following code:
+```json
+{
+  "PacktSwitch": {
+    "Value": "Info", // Must be set to work with 7.0.3 or later.
+    "Level": "Info" // Works with 7.0.2 or earlier including .NET 6.
+  }
+}
 ```
+
+In the eighth edition, I will instruct readers to just set the `Value` property because this implicitly sets the `Level` as well.
+
+> See the following explanation from Microsoft about the bug they fixed that cause this problem: https://github.com/dotnet/runtime/issues/82998
+
+See also this common mistake item: https://github.com/markjprice/cs11dotnet7/blob/main/docs/errata/common-errors.md#microsoft-introduces-a-bug-in-a-later-version
 
 # Page 180 - Reviewing project packages
 
@@ -578,7 +611,7 @@ public virtual DbSet<Category> Categories { get; set; }
 
 # Page 477 - Inserting entities
 
-> Thanks to [Chadwick Geyser](https://github.com/chadwickgeyser) for raising this [issue on 29 November 2022](https://github.com/markjprice/cs11dotnet7/issues/5).
+> Thanks to [Chadwick Geyser](https://github.com/chadgdotme) for raising this [issue on 29 November 2022](https://github.com/markjprice/cs11dotnet7/issues/5).
 
 In Step 4, the code statement to list the products uses an older version of the method signature that I removed before publishing that only allows a single `productId` to be highlighted, as shown in the following code:
 ```cs
